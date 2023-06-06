@@ -8,6 +8,7 @@ ARG pipeline_start_user_name
 LABEL com.anlulu.image.hello.authors=${pipeline_start_user_name}
 ARG working_space
 WORKDIR ${working_space}
+EXPOSE 8080/tcp
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 && echo "hosts: files dns" > /etc/nsswitch.conf
 ADD application ./
-CMD ./application
+ENTRYPOINT ["./application"]
